@@ -1,0 +1,398 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0f0f0f;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    height: 65px;
+    width: 100%;
+    background-color: #181818;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 250px;
+}
+
+.menu {
+    font-size: 25px;
+    cursor: pointer;
+    margin-right: 12px;
+}
+
+.youtube-logo {
+    background-color: red;
+    color: white;
+    padding: 3px 9px;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+.logo-area h2 {
+    font-size: 23px;
+    letter-spacing: -1px;
+}
+
+.search-area {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    max-width: 750px;
+    margin: 0 25px;
+}
+
+.search-area input {
+    width: 100%;
+    height: 46px;
+    padding: 12px;
+    background-color: #121212;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 4px 0 0 4px;
+    font-size: 17px;
+    outline: none;
+}
+
+.search-btn {
+    height: 46px;
+    width: 75px;
+    border: 1px solid #333;
+    background-color: #303030;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.mic {
+    margin-left: 15px;
+    border: none;
+    background-color: transparent;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.right-icons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    font-size: 23px;
+}
+
+.right-icons span {
+    cursor: pointer;
+}
+
+.right-icons img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    background-color: #212121;
+    padding-top: 20px;
+    overflow-y: auto;
+}
+
+.sidebar a {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 0 28px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.sidebar a:hover {
+    background-color: #383838;
+}
+
+.sidebar a.active {
+    background-color: #383838;
+    font-weight: bold;
+}
+
+.sidebar a span {
+    font-size: 23px;
+    width: 25px;
+    text-align: center;
+}
+
+.sidebar hr {
+    border: none;
+    border-top: 1px solid #383838;
+    margin: 20px 0;
+}
+
+.sidebar h4 {
+    color: #aaa;
+    font-size: 14px;
+    padding: 5px 28px 12px;
+}
+
+.sidebar a img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Main section */
+.main-content {
+    margin-left: 280px;
+    padding: 65px 28px 30px;
+}
+
+/* Category buttons */
+.categories {
+    height: 65px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    overflow-x: auto;
+    white-space: nowrap;
+    background-color: #0f0f0f;
+    position: sticky;
+    top: 65px;
+    z-index: 10;
+    scrollbar-width: none;
+}
+
+.categories::-webkit-scrollbar {
+    display: none;
+}
+
+.categories button {
+    padding: 10px 18px;
+    background-color: #303030;
+    border: 1px solid #444;
+    border-radius: 25px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.categories button:hover {
+    background-color: #454545;
+}
+
+.categories button.selected {
+    background-color: white;
+    color: black;
+}
+
+/* Video grid */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 45px 20px;
+    margin-top: 25px;
+}
+
+.video-card {
+    min-width: 0;
+    cursor: pointer;
+}
+
+.thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 15px;
+    background-color: #282828;
+}
+
+.video-card:hover .thumbnail {
+    border-radius: 10px;
+}
+
+.video-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.video-info > img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.video-info h3 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    overflow: hidden;
+}
+
+.video-info p {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Responsive design */
+@media (max-width: 1400px) {
+    .sidebar {
+        width: 230px;
+    }
+
+    .main-content {
+        margin-left: 230px;
+    }
+
+    .video-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .logo-area {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .sidebar {
+        width: 75px;
+    }
+
+    .sidebar a {
+        justify-content: center;
+        padding: 0;
+        font-size: 0;
+    }
+
+    .sidebar a span {
+        font-size: 23px;
+    }
+
+    .sidebar h4,
+    .sidebar hr,
+    .sidebar a img {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 75px;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .logo-area {
+        min-width: auto;
+    }
+
+    .right-icons {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        height: 60px;
+        padding: 0 12px;
+    }
+
+    .logo-area {
+        gap: 7px;
+    }
+
+    .menu {
+        margin-right: 0;
+        font-size: 20px;
+    }
+
+    .logo-area h2 {
+        font-size: 17px;
+    }
+
+    .youtube-logo {
+        font-size: 12px;
+    }
+
+    .search-area {
+        margin: 0 10px;
+        justify-content: flex-end;
+    }
+
+    .search-area input {
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .search-btn {
+        width: 40px;
+        height: 38px;
+        font-size: 22px;
+    }
+
+    .mic,
+    .right-icons {
+        display: none;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 60px 12px 20px;
+    }
+
+    .categories {
+        top: 60px;
+        height: 58px;
+        gap: 8px;
+    }
+
+    .categories button {
+        padding: 8px 13px;
+        font-size: 12px;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 15px;
+    }
+
+    .thumbnail {
+        border-radius: 8px;
+    }
+}

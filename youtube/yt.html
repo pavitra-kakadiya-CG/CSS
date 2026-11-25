@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f0f0f;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        aside {
+            width: 215px;
+            height: 100vh;
+            background-color: #212121;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 20;
+        }
+
+        .logo {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            background-color: #212121;
+            z-index: 2;
+        }
+
+        .logo img:first-child {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        .logo img:last-child {
+            width: 90px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .sidebar-section {
+            display: flex;
+            flex-direction: column;
+            padding: 7px 0;
+            border-bottom: 1px solid #383838;
+            margin-bottom: 8px;
+        }
+
+        .home {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 0 24px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .home:hover,
+        .home.active {
+            background-color: #383838;
+        }
+
+        .home img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .home h3 {
+            font-size: 12px;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .section-title {
+            font-size: 12px;
+            color: #aaaaaa;
+            font-weight: 600;
+            padding: 12px 24px;
+        }
+
+        .subscription {
+            gap: 14px;
+        }
+
+        .subscription img {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        header {
+            height: 100px;
+            position: fixed;
+            top: 0;
+            left: 215px;
+            right: 0;
+            background-color: #0f0f0f;
+            z-index: 10;
+        }
+
+        .up {
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            border-bottom: 1px solid #303030;
+        }
+
+        .middle {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 650px;
+            min-width: 0;
+            margin-left: 5%;
+        }
+
+        .search {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            min-width: 0;
+            border: 1px solid #303030;
+            border-radius: 3px;
+            overflow: hidden;
+            background-color: #121212;
+        }
+
+        .search input {
+            height: 100%;
+            flex: 1;
+            min-width: 0;
+            padding: 0 10px;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: white;
+            font-size: 14px;
+        }
+
+        .search input::placeholder {
+            color: #aaaaaa;
+        }
+
+        .search button {
+            width: 54px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background-color: #222222;
+            border: none;
+            border-left: 1px solid #303030;
+            cursor: pointer;
+        }
+
+        .search button img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .mike {
+            width: 42px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+
+        .mike img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .side {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-left: 25px;
+            flex-shrink: 0;
+        }
+
+        .side div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .side img {
+            width: 21px;
+            height: 21px;
+            object-fit: contain;
+        }
+
+        .side .profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        .down {
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+            border-bottom: 1px solid #303030;
+            background-color: #0f0f0f;
+        }
+
+        .categories {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 20px;
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .category {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7px 13px;
+            border-radius: 20px;
+            background-color: #303030;
+            border: 1px solid #383838;
+            color: #f1f1f1;
+            font-size: 12px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .category:hover {
+            background-color: #404040;
+        }
+
+        .category.active {
+            background-color: #f1f1f1;
+            color: #0f0f0f;
+            border-color: #f1f1f1;
+        }
+
+        .category-arrow {
+            width: 35px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background-color: #0f0f0f;
+        }
+
+        .category-arrow img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        main {
+            margin-left: 215px;
+            padding: 115px 20px 30px;
+            min-height: 100vh;
+        }
+
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 35px 15px;
+        }
+        
+
+        .video-card {
+            width: calc((100% - 45px) / 4);
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #272727;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .video-details {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .channel-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #303030;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .channel-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .video-title {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            margin-bottom: 8px;
+        }
+
+        .channel-name,
+        .video-stats {
+            font-size: 12px;
+            color: #aaaaaa;
+            line-height: 18px;
+        }
+
+
+        @media (max-width: 1200px) {
+            .video-card {
+                width: calc((100% - 30px) / 3);
+            }
+
+            .middle {
+                margin-left: 2%;
+            }
+
+            .side {
+                gap: 15px;
+                margin-left: 15px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            aside {
+                width: 72px;
+            }
+
+            .logo {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .logo img:last-child {
+                display: none;
+            }
+
+            .home {
+                height: 65px;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;
+                padding: 5px 0;
+            }
+
+            .home h3,
+            .section-title {
+                display: none;
+            }
+
+            .subscription {
+                gap: 0;
+            }
+
+            .subscription img {
+                width: 25px;
+                height: 25px;
+            }
+
+            header {
+                left: 72px;
+            }
+
+            main {
+                margin-left: 72px;
+            }
+
+            .middle {
+                margin-left: 0;
+            }
+
+            .side {
+                gap: 12px;
+                margin-left: 12px;
+            }
+
+            .video-card {
+                width: calc((100% - 15px) / 2);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .up {
+                padding: 0 10px;
+            }
+
+            .side {
+                gap: 10px;
+                margin-left: 10px;
+            }
+
+            .side div:nth-child(2),
+            .side div:nth-child(3),
+            .mike {
+                display: none;
+            }
+
+            .categories {
+                gap: 8px;
+                padding: 0 10px;
+            }
+
+            .category-arrow {
+                width: 28px;
+            }
+
+            main {
+                padding: 115px 12px 25px;
+            }
+
+            .video-card {
+                width: 100%;
+            }
+
+            .thumbnail {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <aside>
+
+        <div class="logo">
+            <img src="hambarger.png" alt="Menu">
+            <img src="Youtube logo.png" alt="YouTube">
+        </div>
+
+        <div class="sidebar-section">
+
+            <div class="home active">
+                <img src="home.png" alt="">
+                <h3>Home</h3>
+            </div>
+
+            <div class="home">
+                <img src="explore.png" alt="">
+                <h3>Explore</h3>
+            </div>
+
+            <div class="home">
+                <img src="shorts.png" alt="">
+                <h3>Shorts</h3>
+            </div>
+
+            <div class="home">
+                <img src="subscription.png" alt="">
+                <h3>Subscriptions</h3>
+            </div>
+
+        </div>
+
+        <div class="sidebar-section">
+
+            <div class="home">
+                <img src="library.png" alt="">
+                <h3>Library</h3>
+            </div>
+
+            <div class="home">
+                <img src="history.png" alt="">
+                <h3>History</h3>
+            </div>
+
+            <div class="home">
+                <img src="your_video.png" alt="">
+                <h3>Your videos</h3>
+            </div>
+
+            <div class="home">
+                <img src="watch_later.png" alt="">
+                <h3>Watch later</h3>
+            </div>
+
+            <div class="home">
+                <img src="liked.png" alt="">
+                <h3>Liked videos</h3>
+            </div>
+
+            <div class="home">
+                <img src="down_arrow.png" alt="">
+                <h3>Show more</h3>
+            </div>
+
+        </div>
+
+        <div class="sidebar-section">
+
+            <h3 class="section-title">SUBSCRIPTIONS</h3>
+
+            <div class="home subscription">
+                <img src="Ellipse 1.png" alt="">
+                <h3>Nadir On The Go</h3>
+            </div>
+
+            <div class="home subscription">
+                <img src="Ellipse 1 (1).png" alt="">
+                <h3>Coke Studio Bangla</h3>
+            </div>
+
+            <div class="home subscription">
+                <img src="Ellipse 1 (2).png" alt="">
+                <h3>MKBHD</h3>
+            </div>
+
+            <div class="home subscription">
+                <img src="Ellipse 1 (3).png" alt="">
+                <h3>Figma</h3>
+            </div>
+
+            <div class="home subscription">
+                <img src="Ellipse 1 (4).png" alt="">
+                <h3>ATC Android To To C...</h3>
+            </div>
+
+            <div class="home subscription">
+                <img src="Ellipse 1 (5).png" alt="">
+                <h3>Alux.com</h3>
+            </div>
+
+            <div class="home subscription">
+                <img src="Ellipse 1 (6).png" alt="">
+                <h3>More channels</h3>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <header>
+
+        <div class="up">
+
+            <div class="middle">
+
+                <div class="search">
+                    <input type="text" placeholder="Search">
+
+                    <button type="button">
+                        <img src="search.png" alt="Search">
+                    </button>
+                </div>
+
+                <div class="mike">
+                    <img src="mic.png" alt="Microphone">
+                </div>
+
+            </div>
+
+            <div class="side">
+
+                <div>
+                    <img src="create.png" alt="Create">
+                </div>
+
+                <div>
+                    <img src="more.png" alt="Apps">
+                </div>
+
+                <div>
+                    <img src="bell.png" alt="Notifications">
+                </div>
+
+                <div class="profile">
+                    <img src="Ellipse 1 (1).png" alt="Profile">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="down">
+
+            <div class="categories">
+
+                <div class="category active">All</div>
+                <div class="category">Cook Studio</div>
+                <div class="category">UX</div>
+                <div class="category">Case Study</div>
+                <div class="category">Music</div>
+                <div class="category">Bangla Lofi</div>
+                <div class="category">Tour</div>
+                <div class="category">Saintmartin</div>
+                <div class="category">Tech</div>
+                <div class="category">iPhone 13</div>
+                <div class="category">User Interface Design</div>
+                <div class="category">Computer</div>
+
+            </div>
+
+            <div class="category-arrow">
+                <img src="leftBottom.png" alt="More categories">
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <div class="video-container">
+
+
+            <div class="video-card">
+
+                <div class="thumbnail">
+                    <img src="Thumbnail-1.png" alt="Video thumbnail 1">
+                </div>
+
+                <div class="video-details">
+
+                    <div class="channel-logo">
+                        <img src="Ellipse 1.png" alt="Nadir On The Go">
+                    </div>
+
+                    <div class="video-info">
+                        <h3 class="video-title">
+                            Exploring Beautiful Places Around the World
+                        </h3>
+                        <p class="channel-name">Nadir On The Go</p>
+                        <p class="video-stats">1M views · 2 days ago</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="video-card">
+
+                <div class="thumbnail">
+                    <img src="Thumbnail-2.png" alt="Video thumbnail 2">
+                </div>
+
+                <div class="video-details">
+
+                    <div class="channel-logo">
+                        <img src="Ellipse 1 (1).png" alt="Coke Studio Bangla">
+                    </div>
+
+                    <div class="video-info">
+                        <h3 class="video-title">
+                            Coke Studio Bangla | Latest Musical Performance
+                        </h3>
+                        <p class="channel-name">Coke Studio Bangla</p>
+                        <p class="video-stats">500K views · 1 week ago</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="video-card">
+
+                <div class="thumbnail">
+                    <img src="Thumbnail-3.png" alt="Video thumbnail 3">
+                </div>
+
+                <div class="video-details">
+
+                    <div class="channel-logo">
+                        <img src="Ellipse 1 (2).png" alt="MKBHD">
+                    </div>
+
+                    <div class="video-info">
+                        <h3 class="video-title">
+                            The Latest Tech Gadgets You Need to Know About
+                        </h3>
+                        <p class="channel-name">MKBHD</p>
+                        <p class="video-stats">250K views · 3 days ago</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="video-card">
+
+                <div class="thumbnail">
+                    <img src="Thumbnail-4.png" alt="Video thumbnail 4">
+                </div>
+
+                <div class="video-details">
+
+                    <div class="channel-logo">
+                        <img src="Ellipse 1 (3).png" alt="Figma">
+                    </div>
+
+                    <div class="video-info">
+                        <h3 class="video-title">
+                            Learn UI/UX Design with Figma - Beginner Guide
+                        </h3>
+                        <p class="channel-name">Figma</p>
+                        <p class="video-stats">100K views · 5 days ago</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="video-card">
+
+                <div class="thumbnail">
+                    <img src="Thumbnail-5.png" alt="Video thumbnail 5">
+                </div>
+
+                <div class="video-details">
+
+                    <div class="channel-logo">
+                        <img src="Ellipse 1 (4).png" alt="ATC Android To To C">
+                    </div>
+
+                    <div class="video-info">
+                        <h3 class="video-title">
+                            Android Tips and Tricks You Should Try Today
+                        </h3>
+                        <p class="channel-name">ATC Android To To C...</p>
+                        <p class="video-stats">800K views · 1 day ago</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="video-card">
+
+                <div class="thumbnail">
+                    <img src="Thumbnail-6.png" alt="Video thumbnail 6">
+                </div>
+
+                <div class="video-details">
+
+                    <div class="channel-logo">
+                        <img src="Ellipse 1 (5).png" alt="Alux.com">
+                    </div>
+
+                    <div class="video-info">
+                        <h3 class="video-title">
+                            10 Habits That Can Change Your Life Forever
+                        </h3>
+                        <p class="channel-name">Alux.com</p>
+                        <p class="video-stats">2M views · 1 month ago</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="video-card">
+
+                <div class="thumbnail">
+                    <img src="Thumbnail-7.png" alt="Video thumbnail 7">
+                </div>
+
+                <div class="video-details">
+
+                    <div class="channel-logo">
+                        <img src="Ellipse 1 (5).png" alt="Alux.com">
+                    </div>
+
+                    <div class="video-info">
+                        <h3 class="video-title">
+                            How Successful People Think Differently
+                        </h3>
+                        <p class="channel-name">Alux.com</p>
+                        <p class="video-stats">350K views · 4 days ago</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="video-card">
+
+                <div class="thumbnail">
+                    <img src="Thumbnail-8.png" alt="Video thumbnail 8">
+                </div>
+
+                <div class="video-details">
+
+                    <div class="channel-logo">
+                        <img src="Ellipse 1.png" alt="Nadir On The Go">
+                    </div>
+
+                    <div class="video-info">
+                        <h3 class="video-title">
+                            A Memorable Travel Adventure You Must Watch
+                        </h3>
+                        <p class="channel-name">Nadir On The Go</p>
+                        <p class="video-stats">1.5M views · 2 weeks ago</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Over Scoreboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+            background:
+                linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.4)),
+                linear-gradient(to bottom, #142c45 0%, #263d4c 55%, #15320c 56%, #071b06 100%);
+        }
+
+        .container {
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background:
+                radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.5) 100%);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 23px;
+            margin-bottom: 75px;
+            text-shadow: 2px 2px 5px black;
+        }
+
+        .logo span {
+            display: block;
+        }
+
+        .scoreboard {
+            width: 100%;
+            max-width: 950px;
+            display: flex;
+            justify-content: space-between;
+            gap: 70px;
+        }
+
+        .card {
+            width: 50%;
+            height: 340px;
+            border-radius: 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .india {
+            background: rgba(0, 110, 255, 0.75);
+        }
+
+        .pakistan {
+            background: rgba(45, 190, 15, 0.8);
+        }
+
+        h1 {
+            font-size: 82px;
+            margin: 0 0 35px;
+        }
+
+        .runs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .runs span {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: white;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .total {
+            font-size: 45px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 55px;
+            margin-top: 75px;
+        }
+
+        .btn {
+            width: 95px;
+            height: 95px;
+            border: 4px solid white;
+            border-radius: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 65px;
+            box-shadow: 0 5px 3px rgba(0,0,0,0.4);
+        }
+
+        .edit {
+            background: orange;
+        }
+
+        .reset {
+            background: #ed2525;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            <span>🏏 SUPER</span>
+            <span>OVER</span>
+        </div>
+
+        <div class="scoreboard">
+
+            <div class="card india">
+                <h1>IND</h1>
+
+                <div class="runs">
+                    <span>4</span>
+                    <span>3</span>
+                    <span>2</span>
+                    <span>6</span>
+                    <span>6</span>
+                    <span>6</span>
+                </div>
+
+                <div class="total">27/0</div>
+            </div>
+
+            <div class="card pakistan">
+                <h1>PAK</h1>
+
+                <div class="runs">
+                    <span>2</span>
+                    <span>4</span>
+                    <span>0</span>
+                    <span>3</span>
+                    <span>1</span>
+                    <span>4</span>
+                </div>
+
+                <div class="total">14/0</div>
+            </div>
+
+        </div>
+
+        <div class="buttons">
+            <div class="btn edit">✎</div>
+            <div class="btn reset">↶</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

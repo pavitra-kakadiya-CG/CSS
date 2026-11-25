@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sudoku</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            margin-top: 70px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 22px;
+            font-weight: normal;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 2px solid black;
+        }
+
+        td {
+            width: 33px;
+            height: 33px;
+            text-align: center;
+            font-size: 23px;
+            border: 1px solid black;
+        }
+
+
+        tr:nth-child(-n+3) td:nth-child(n+4):nth-child(-n+6),
+        tr:nth-child(n+4):nth-child(-n+6) td:nth-child(-n+3),
+        tr:nth-child(n+4):nth-child(-n+6) td:nth-child(n+7):nth-child(-n+9),
+        tr:nth-child(n+7) td:nth-child(n+4):nth-child(-n+6) {
+            background-color: #a8d5b9;
+        }
+
+      
+
+        td:nth-child(3),
+        td:nth-child(6) {
+            border-right: 3px solid black;
+        }
+
+        tr:nth-child(3) td,
+        tr:nth-child(6) td {
+            border-bottom: 3px solid black;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+   
+
+        <div>
+            <h2>SUDOKU</h2>
+
+            <table>
+                <tr><td>8</td><td></td><td>6</td><td></td><td></td><td>3</td><td></td><td>9</td><td></td></tr>
+                <tr><td></td><td>4</td><td></td><td></td><td>1</td><td></td><td></td><td>6</td><td>8</td></tr>
+                <tr><td>2</td><td></td><td></td><td>8</td><td>7</td><td></td><td></td><td></td><td>5</td></tr>
+
+                <tr><td>1</td><td></td><td>8</td><td></td><td></td><td>5</td><td></td><td>2</td><td></td></tr>
+                <tr><td></td><td>3</td><td></td><td>1</td><td></td><td></td><td></td><td>5</td><td></td></tr>
+                <tr><td>7</td><td></td><td>5</td><td></td><td>3</td><td></td><td>9</td><td></td><td></td></tr>
+
+                <tr><td></td><td>2</td><td>1</td><td></td><td></td><td>7</td><td></td><td>4</td><td></td></tr>
+                <tr><td>6</td><td></td><td></td><td></td><td>2</td><td></td><td>8</td><td></td><td></td></tr>
+                <tr><td></td><td>8</td><td>7</td><td>6</td><td></td><td>4</td><td></td><td></td><td>3</td></tr>
+            </table>
+        </div>
+
+      
+
+        <div>
+            <h2>ANSWER</h2>
+
+            <table>
+                <tr><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>1</td><td>9</td><td>2</td></tr>
+                <tr><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>9</td><td>7</td><td>6</td><td>8</td></tr>
+                <tr><td>2</td><td>1</td><td>9</td><td>8</td><td>7</td><td>6</td><td>4</td><td>3</td><td>5</td></tr>
+
+                <tr><td>1</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>3</td><td>2</td><td>4</td></tr>
+                <tr><td>4</td><td>3</td><td>2</td><td>1</td><td>9</td><td>8</td><td>6</td><td>5</td><td>7</td></tr>
+                <tr><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>9</td><td>8</td><td>1</td></tr>
+
+                <tr><td>3</td><td>2</td><td>1</td><td>9</td><td>8</td><td>7</td><td>5</td><td>4</td><td>6</td></tr>
+                <tr><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>8</td><td>7</td><td>9</td></tr>
+                <tr><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>2</td><td>1</td><td>3</td></tr>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #dce5e8;
+    color: #111;
+}
+
+
+.navbar {
+    height: 62px;
+    background: #131921;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.logo span {
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.address {
+    min-width: 175px;
+    display: flex;
+    flex-direction: column;
+}
+
+.address small,
+.account small,
+.orders small {
+    color: #ccc;
+    font-size: 12px;
+}
+
+.address b,
+.account b,
+.orders b {
+    font-size: 14px;
+}
+
+.search {
+    display: flex;
+    height: 43px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.search select {
+    width: 55px;
+    border: none;
+    padding: 5px;
+    background: #eee;
+}
+
+.search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 15px;
+    min-width: 0;
+}
+
+.search button {
+    width: 55px;
+    border: none;
+    background: #febd69;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.country {
+    font-size: 22px;
+}
+
+.account,
+.orders {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+}
+
+.cart {
+    font-size: 19px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+
+.menu {
+    height: 44px;
+    background: #232f3e;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 12px;
+    gap: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 15px;
+}
+
+.menu span,
+.menu b {
+    cursor: pointer;
+}
+
+
+.main {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("assets-a/background\ picture.png");
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+    padding: 0 2%;
+}
+
+
+
+
+.hero {
+    height: 315px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    color: white;
+}
+
+.hero-text {
+    width: 35%;
+    padding-top: 40px;
+}
+
+.hero-text h1 {
+    font-size: 32px;
+    margin-bottom: 18px;
+}
+
+.hero-text p {
+    font-size: 25px;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.hero-text small {
+    font-size: 17px;
+}
+
+.hero-image {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    width: 85%;
+    height: 95%;
+    object-fit: contain;
+}
+
+.services {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.services div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.services b {
+    background: white;
+    color: black;
+    border-radius: 50%;
+    padding: 7px;
+}
+
+.services span {
+    font-size: 14px;
+}
+
+.line {
+    height: 35px;
+    width: 1px;
+    background: white;
+}
+
+.arrow {
+    position: absolute;
+    top: 40%;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+.left {
+    left: 12px;
+}
+
+.right {
+    right: 12px;
+}
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+}
+
+.card {
+    background: #fffafa;
+    padding: 22px;
+    min-width: 0;
+    min-height: 450px;
+}
+
+.card h2 {
+    font-size: 23px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 12px;
+    margin-bottom: 30px;
+}
+
+.product-grid img {
+    width: 100%;
+    height: 115px;
+    object-fit: cover;
+}
+
+.product-grid p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 3px;
+}
+
+.card a {
+    color: #007185;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.card a:hover {
+    color: #c7511f;
+    text-decoration: underline;
+}
+
+
+
+.clearance {
+    width: 100%;
+    height: 310px;
+    margin: 10px 0 20px;
+}
+
+.clearance img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    min-width: 0;
+}
+
+.signin {
+    background: #fffafa;
+    padding: 22px;
+}
+
+.signin h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.signin button {
+    width: 100%;
+    height: 40px;
+    background: #ffd814;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.laptop {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.laptop img {
+    width: 100%;
+    display: block;
+
+}
+
+
+</style>
+
+<body>
+
+
+    <header class="navbar">
+
+        <div class="logo">
+            amazon<span>.in</span>
+        </div>
+
+        <div class="address">
+            <small>Hello</small>
+            <b> Select your address</b>
+        </div>
+
+        <div class="search">
+
+            <input type="text" placeholder="Search Amazon.in">
+
+            <button><img src="assets-a/search icon.png" alt="Search"></button>
+        </div>
+
+        <div class="country">
+            <img src="assets-a/indian flag.png" alt="India Flag" width="30" height="20">
+            
+        </div>
+
+        <div class="account">
+            <small>Hello, Sign in</small>
+            <p>Account & Lists</p>
+        </div>
+
+        <div class="orders">
+            <small>Returns</small>
+            <p>& Orders</p>
+        </div>
+
+        <div class="cart">
+            <img src="assets-a/cart icon.png" alt="Cart"><sub>cart</sub>
+        </div>
+
+    </header>
+
+
+    <nav class="menu">
+
+        <b>☰ All</b>
+        <span>Best Sellers</span>
+        <span>Mobiles</span>
+        <span>Customer Service</span>
+        <span>Today's Deals</span>
+        <span>Fashion</span>
+        <span>Electronics</span>
+        <span>Books</span>
+        <span>Prime ⌄</span>
+        <span>New Releases</span>
+        <span>Home & Kitchen</span>
+        <span>Amazon Pay</span>
+        
+
+    </nav>
+
+
+    <main class="main">
+
+        <section class="hero">
+
+        
+
+            <div class="arrow left">❮</div>
+            <div class="arrow right">❯</div>
+
+        </section>
+
+
+        
+        <section class="cards">
+
+
+            
+            <div class="card">
+
+                <h2>Upgrade your home | Amazon Brands & more</h2>
+
+                <div class="product-grid">
+
+                    <div>
+                        <img src="assets-a/image 17.png" alt="Smart TV">
+                        <p>Smart LED TVs</p>
+                    </div>
+
+                    <div>
+                        <img src="assets-a/image 18.png" alt="Appliances">
+                        <p>Appliances</p>
+                    </div>
+
+                    <div>
+                        <img src="assets-a/image 20.png" alt="Furniture">
+                        <p>Furniture</p>
+                    </div>
+
+                    <div>
+                        <img src="assets-a/image 19.png" alt="Kitchen products">
+                        <p>Kitchen products</p>
+                    </div>
+
+                </div>
+
+                <a href="#">Shop now</a>
+
+            </div>
+
+
+            
+            <div class="card">
+
+                <h2>Revamp your home in style</h2>
+
+                <div class="product-grid">
+
+                    <div>
+                        <img src="assets-a/image 25.png" alt="Bedsheets">
+                        <p>Bedsheets, curtains & more</p>
+                    </div>
+
+                    <div>
+                        <img src="assets-a/image 24.png" alt="Home decoration">
+                        <p>Home decoration</p>
+                    </div>
+
+                    <div>
+                        <img src="assets-a/image 22.png" alt="Home storage">
+                        <p>Home storage</p>
+                    </div>
+
+                    <div>
+                        <img src="assets-a/image 21.png" alt="Lighting">
+                        <p>Lighting solutions</p>
+                    </div>
+
+                </div>
+
+                <a href="#">Explore all</a>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <h2>Up to 70% off | Clearance store</h2>
+
+                <div class="clearance">
+                    <img src="assets-a/image 26.png" alt="Clearance products">
+                </div>
+
+
+
+            </div>
+
+
+
+            <div class="right-section">
+
+                <div class="signin">
+
+                    <h2>Sign in for your best experience</h2>
+
+                    <button>Sign in securely</button>
+
+                </div>
+
+                <div class="laptop">
+
+                    <img src="assets-a/image 28.png" alt="Laptops from top brands">
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</body>
+</html>
